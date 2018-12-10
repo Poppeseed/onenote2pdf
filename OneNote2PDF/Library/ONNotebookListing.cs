@@ -134,12 +134,13 @@ namespace OneNote2PDF.Library
         {
             List<Data.ONPage> pages =
                 (from page in xml.Elements(oneNS + "Page")
-                 // orderby section.Value
+                     // orderby section.Value
                  select new Data.ONPage
                  {
                      Name = page.Attribute("name").Value,
                      ID = page.Attribute("ID").Value,
                      LastModifiedTime = Convert.ToDateTime(page.Attribute("lastModifiedTime").Value),
+                     IsSubPage = page.Attribute("isSubPage")?.Value.Equals("true")
                  }).ToList();
             return pages;
         }

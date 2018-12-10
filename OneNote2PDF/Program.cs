@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using OneNote2PDF.Library;
 using OneNote2PDF.Library.Data;
 using OneNote = Microsoft.Office.Interop.OneNote;
@@ -64,6 +65,11 @@ namespace OneNote2PDF
                 export2PDF.OneNoteApplication = oneApp;
 
                 export2PDF.CreateCacheFolder(notebook);
+
+                if(!Directory.Exists(Config.Current.OutputPath))
+                {
+                    Directory.CreateDirectory(Config.Current.OutputPath);
+                }
 
                 if (Config.Current.ExportNotebook)
                 {
